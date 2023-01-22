@@ -7,6 +7,21 @@
     <string name="forgot_password">Forgot Password</string>
     <string name="or">OR</string>
     <string name="register">Register</string>
-
-
+    <string name="name">Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="change_password">Change Password</string>
+    <string name="old_password">Old Password</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_new_password">Confirm New Password</string>
+    <string name="welcome_home">Welcome Home,</string>
+    <string name="default_text">-</string>
+    <string name="tag_line">Panduan Belajar dasar-dasar Javascript</string>
+    <string name="search">Search</string>
+    <string name="your_materials">Your Materials</string>
+    <string name="logout">Logout</string>
+    <string name="change_language">Change Language</string>
+    <string name="user_profile">User Profile</string>
+    <string name="error">Error</string>
+    <string name="success">Success</string>
+    <string name="please_wait">Please wait...</string>
 </resources>

@@ -6,8 +6,24 @@
         <entry key="..\:/CODE/Belajar Android/LearningApp/app/src/main/res/drawable/bg_btn_auth_color_primary.xml" value="0.103" />
         <entry key="..\:/CODE/Belajar Android/LearningApp/app/src/main/res/drawable/bg_btn_auth_color_white.xml" value="0.103" />
         <entry key="..\:/CODE/Belajar Android/LearningApp/app/src/main/res/drawable/bg_edit_text.xml" value="0.103" />
+        <entry key="..\:/CODE/Belajar Android/LearningApp/app/src/main/res/drawable/bg_edit_text_search.xml" value="0.1205" />
+        <entry key="..\:/CODE/Belajar Android/LearningApp/app/src/main/res/drawable/bg_index.xml" value="0.1205" />
+        <entry key="..\:/CODE/Belajar Android/LearningApp/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.1205" />
+        <entry key="..\:/CODE/Belajar Android/LearningApp/app/src/main/res/layout/activity_change_password.xml" value="0.2125" />
+        <entry key="..\:/CODE/Belajar Android/LearningApp/app/src/main/res/layout/activity_content.xml" value="0.2364179037174423" />
+        <entry key="..\:/CODE/Belajar Android/LearningApp/app/src/main/res/layout/activity_forgot_password.xml" value="0.2125" />
         <entry key="..\:/CODE/Belajar Android/LearningApp/app/src/main/res/layout/activity_login.xml" value="0.17910447251321387" />
+        <entry key="..\:/CODE/Belajar Android/LearningApp/app/src/main/res/layout/activity_main.xml" value="0.17910447251321387" />
+        <entry key="..\:/CODE/Belajar Android/LearningApp/app/src/main/res/layout/activity_register.xml" value="0.17910447251321387" />
         <entry key="..\:/CODE/Belajar Android/LearningApp/app/src/main/res/layout/activity_splash.xml" value="0.17910447251321387" />
+        <entry key="..\:/CODE/Belajar Android/LearningApp/app/src/main/res/layout/activity_user.xml" value="0.2125" />
+        <entry key="..\:/CODE/Belajar Android/LearningApp/app/src/main/res/layout/item_material.xml" value="0.2125" />
+        <entry key="..\:/CODE/Belajar Android/LearningApp/app/src/main/res/layout/item_page.xml" value="0.2125" />
+        <entry key="..\:/CODE/Belajar Android/LearningApp/app/src/main/res/layout/layout_dialog_error.xml" value="0.2125" />
+        <entry key="..\:/CODE/Belajar Android/LearningApp/app/src/main/res/layout/layout_dialog_loading.xml" value="0.2125" />
+        <entry key="..\:/CODE/Belajar Android/LearningApp/app/src/main/res/layout/layout_dialog_success.xml" value="0.2364179037174423" />
+        <entry key="..\:/CODE/Belajar Android/LearningApp/app/src/main/res/layout/layout_markdown.xml" value="0.21145833333333333" />
+        <entry key="..\:/CODE/Belajar Android/LearningApp/app/src/main/res/layout/layout_youtube.xml" value="0.21145833333333333" />
       </map>
     </option>
   </component>
