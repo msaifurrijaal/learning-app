@@ -8,16 +8,21 @@ import com.example.learningapp.R
 import com.example.learningapp.databinding.ActivityUserBinding
 import com.example.learningapp.presentation.changepassword.ChangePasswordActivity
 import com.example.learningapp.presentation.login.LoginActivity
+import com.google.firebase.auth.FirebaseAuth
 import org.jetbrains.anko.startActivity
 
 class UserActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityUserBinding
+    private lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityUserBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        //Init
+        firebaseAuth = FirebaseAuth.getInstance()
 
         onAction()
 
@@ -35,6 +40,7 @@ class UserActivity : AppCompatActivity() {
             }
 
             btnLogoutUser.setOnClickListener {
+                firebaseAuth.signOut()
                 startActivity<LoginActivity>()
                 finishAffinity()
             }
