@@ -7,26 +7,48 @@ import android.os.Looper
 import androidx.viewpager.widget.ViewPager
 import com.example.learningapp.adapter.PagesAdapter
 import com.example.learningapp.databinding.ActivityContentBinding
+import com.example.learningapp.model.Content
 import com.example.learningapp.model.Material
 import com.example.learningapp.model.PagesItem
 import com.example.learningapp.presentation.main.MainActivity
 import com.example.learningapp.repository.Repository
-import com.example.learningapp.utils.invisible
-import com.example.learningapp.utils.disabled
-import com.example.learningapp.utils.enabled
-import com.example.learningapp.utils.visible
+import com.example.learningapp.utils.*
+import com.google.firebase.database.*
+import com.google.gson.Gson
 import org.jetbrains.anko.startActivity
 
 class ContentActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityContentBinding
     private lateinit var pagesAdapter: PagesAdapter
+    private lateinit var contentDatabase: DatabaseReference
     private var currentPosition = 0
     private var materialPosition = 0
 
     companion object{
         const val EXTRA_MATERIAL = "extra_material"
         const val EXTRA_POSITION = "extra_position"
+    }
+
+    private val listenerContent = object : ValueEventListener {
+        override fun onDataChange(snapshot: DataSnapshot) {
+            hideLoading()
+            if (snapshot.value != null){
+                showData()
+
+                val json = Gson().toJson(snapshot.value)
+                val content = Gson().fromJson(json, Content::class.java)
+
+                pagesAdapter.pages = content?.pages as MutableList<PagesItem>
+            }else{
+                showEmptyData()
+            }
+        }
+
+        override fun onCancelled(error: DatabaseError) {
+            hideLoading()
+            showDialogError(this@ContentActivity, error.message)
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +58,7 @@ class ContentActivity : AppCompatActivity() {
 
         //Init
         pagesAdapter = PagesAdapter(this)
+        contentDatabase = FirebaseDatabase.getInstance().getReference("contents")
 
         getDataIntent()
         onAction()
@@ -84,20 +107,31 @@ class ContentActivity : AppCompatActivity() {
 
     private fun getDataContent(material: Material) {
         showLoading()
-        val content = material.idMaterial?.let { Repository.getContents(this)?.get(it) }
+//        val content = material.idMaterial?.let { Repository.getContents(this)?.get(it) }
+//
+//        Handler(Looper.getMainLooper())
+//            .postDelayed({
+//                hideLoading()
+//
+//                pagesAdapter.pages = content?.pages as MutableList<PagesItem>
+//                binding.vpContent.adapter = pagesAdapter
+//                binding.vpContent.setPagingEnabled(false)
+//
+//                //Init untuk tampilan awal index
+//                val textIndex = "${currentPosition + 1} / ${pagesAdapter.count}"
+//                binding.tvIndexContent.text = textIndex
+//            }, 1200)
 
-        Handler(Looper.getMainLooper())
-            .postDelayed({
-                hideLoading()
+        contentDatabase
+            .child(material.idMaterial.toString())
+            .addValueEventListener(listenerContent)
 
-                pagesAdapter.pages = content?.pages as MutableList<PagesItem>
-                binding.vpContent.adapter = pagesAdapter
-                binding.vpContent.setPagingEnabled(false)
+        binding.vpContent.adapter = pagesAdapter
+        binding.vpContent.setPagingEnabled(false)
 
-                //Init untuk tampilan awal index
-                val textIndex = "${currentPosition + 1} / ${pagesAdapter.count}"
-                binding.tvIndexContent.text = textIndex
-            }, 1200)
+        //Init untuk tampilan awal index
+        val textIndex = "${currentPosition + 1} / ${pagesAdapter.count}"
+        binding.tvIndexContent.text = textIndex
     }
 
     private fun showLoading() {
@@ -130,6 +164,20 @@ class ContentActivity : AppCompatActivity() {
             swipeContent.setOnRefreshListener {
                 getDataIntent()
             }
+        }
+    }
+
+    private fun showEmptyData() {
+        binding.apply {
+            ivEmptyDataContent.visible()
+            vpContent.gone()
+        }
+    }
+
+    private fun showData() {
+        binding.apply {
+            ivEmptyDataContent.gone()
+            vpContent.visible()
         }
     }
 }
